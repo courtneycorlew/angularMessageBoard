@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,6 +26,15 @@ const routes: Routes = [
   }
 ];
 
+const firebaseConfig = {
+  apiKey: "AIzaSyA64WVzFaSi0jjRBGLwAIHvluo0H4ySjNM",
+  authDomain: "angular-message-board.firebaseapp.com",
+  databaseURL: "https://angular-message-board.firebaseio.com",
+  projectId: "angular-message-board",
+  storageBucket: "",
+  messagingSenderId: "135417726017"
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +46,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
