@@ -12,6 +12,10 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 
+
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +24,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**', redirectTo: '/'
@@ -41,7 +49,8 @@ const firebaseConfig = {
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +60,7 @@ const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
