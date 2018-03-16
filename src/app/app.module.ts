@@ -11,10 +11,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-
-
+import { MessageService } from './services/message.service';
+import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
+import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'create',
+    component: CreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**', redirectTo: '/'
@@ -50,7 +56,8 @@ const firebaseConfig = {
     FooterComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +67,11 @@ const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
